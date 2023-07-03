@@ -1,4 +1,3 @@
-import { act } from "react-dom/test-utils";
 import { ADD_TODO, DELETE_TODO, UPDATE_TODO } from "../actions/action-types";
 
 const initialState = [];
@@ -14,7 +13,7 @@ export default (state = initialState, action) => {
       return newState;
     case UPDATE_TODO:
       const updateState = state.map((todo) => {
-        if (todo.id == action.payload.todoId) {
+        if (todo.id === action.payload.todoId) {
           todo.title = action.payload.todo.title;
           todo.description = action.payload.todo.description;
         }
