@@ -1,7 +1,8 @@
 import React from "react";
-import { Card, Col, Container, ListGroup, Row } from "react-bootstrap";
+import { Button, Card, Col, Container, ListGroup, Row } from "react-bootstrap";
 import DisplayCount from "./DisplayCount";
 import { connect } from "react-redux";
+import { deleteTodo } from "../redux/actions/todo";
 
 const DisplayTodos = ({ todos, deleteTodo }) => {
   // const [todos, setTodos] = useState([
@@ -22,6 +23,9 @@ const DisplayTodos = ({ todos, deleteTodo }) => {
                   <ListGroup.Item>
                     <h4>{todo.title}</h4>
                     <p>{todo.description}</p>
+                    <Button onClick={(event) => deleteTodo(todo.id)} variant="danger" size="sm">
+                      Delete
+                    </Button>
                   </ListGroup.Item>
                 ))}
               </ListGroup>
@@ -37,5 +41,7 @@ const mapStateToProps = (state) => {
   return { todos: state.todos };
 };
 
-const mapDispatchToProps = (dispatch) => ({});
+const mapDispatchToProps = (dispatch) => ({
+  deleteTodo: (id) => dispatch(deleteTodo(id)),
+});
 export default connect(mapStateToProps, mapDispatchToProps)(DisplayTodos);

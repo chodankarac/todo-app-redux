@@ -3,12 +3,13 @@ import { Button, Card, Col, Container, Form, FormGroup, Row } from "react-bootst
 import DisplayCount from "./DisplayCount";
 import { addTodo } from "../redux/actions/todo";
 import { connect } from "react-redux";
+import { v4 } from "uuid";
 
 const AddTodos = ({ addTodo }) => {
-  const [todo, setTodo] = useState({ title: "", description: "" });
+  const [todo, setTodo] = useState({ title: "", description: "", id: "" });
   const handleSubmit = (event) => {
     event.preventDefault();
-    addTodo(todo);
+    addTodo({ ...todo, id: v4() });
     //add todo in store
     console.log(todo);
     setTodo({
